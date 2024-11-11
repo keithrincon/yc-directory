@@ -1,3 +1,4 @@
+import { auth } from '@/auth';
 import SearchForm from '@/components/SearchForm';
 import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
 // import { client } from '@/sanity/lib/client';
@@ -11,6 +12,10 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
   const params = { search: query || null };
+
+  const session = await auth();
+
+  console.log(session?.id);
 
   // map over posts. later on will fetch over posts directly from sanity.
   // for time being we can create a new array called posts. equal to an array, where we have some objects
